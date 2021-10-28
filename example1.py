@@ -115,11 +115,30 @@ def CalcOfDamageAndNonDamage_NonLocalMeans(image_name):
     plt.show()
     return mask
 
-
-sj = '.jpg'
-i = 1
-while i < 10:
-    name = str(i) + sj;
-    #CalcOfDamageAndNonDamage_bilateral(name)
-    CalcOfDamageAndNonDamage_NonLocalMeans(name)
-    i=i+1
+while True:
+    print('Введите номер изображения (1-12)')
+    print('Введите "0", если хотите выйти')
+    n = int(input())
+    while n>12 or n<0:
+        print('Неверное значение')
+        print('Введите номер изображения (1-12)')
+        print('Введите "0", если хотите выйти')
+        n = int(input())
+    if n==0:
+        exit()
+    sj = '.jpg'
+    name = str(n) + sj;
+    print('Выберите фильтр')
+    print('1 - NonLocalMeans')
+    print('2 - Bilateral')
+    f = int(input())
+    while f>2 or f<1:
+         print('Неверное значение')
+         print('Выберите фильтр')
+         print('1 - NonLocalMeans')
+         print('2 - Bilateral')
+         f = int(input())
+    if f == 1:
+        CalcOfDamageAndNonDamage_NonLocalMeans(name)
+    else:
+        CalcOfDamageAndNonDamage_bilateral(name)
